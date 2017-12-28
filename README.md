@@ -1,4 +1,4 @@
-# ionic-cardanro
+# vue-cardanro
 
 > A Vue.js project
 
