@@ -6,7 +6,6 @@
         <img src="https://dummyimage.com/88x31" alt="">
       </div>
       <div class="sortList">
-        <div class="tap" :class="{active: flag}" @click="showtime"></div>
       </div>
     </div>
     <vFooter></vFooter>
@@ -29,12 +28,6 @@ export default {
     vFooter
   },
   methods: {
-    showtime() {
-      this.flag = true;
-      setTimeout(() => {
-        this.flag = false
-      }, 2500)
-    }
   }
 }
 </script>
@@ -53,32 +46,4 @@ export default {
     position absolute
     top 0
     left 0
-.tap
-  border 1px solid #ccc
-  width 75%
-  margin 0 auto
-  height 0
-  padding-bottom 75%
-  bt-1px(green)
-  &.active
-    &:before
-      display block
-      animation lines 2.5s linear infinite
-  &:before
-    width 50%
-    top 50%
-    left 50%
-    display none
-    transform translateX(-50%)
-@keyframes lines {
-  0% { 
-    top 0
-  }
-  50% {
-    top 100%
-  }
-  100% {
-    top 0
-  }
-}
 </style>

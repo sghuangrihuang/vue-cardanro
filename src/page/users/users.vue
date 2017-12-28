@@ -37,9 +37,7 @@
         </router-link>
       </div>
     </div>
-    <transition name="move">
-      <router-view class="users-wrapper"></router-view>
-    </transition>
+    <router-view class="users-wrapper"></router-view>
     <vFooter></vFooter>
   </div>
 </template>
@@ -103,9 +101,4 @@ export default {
     i:last-child
       font-size 1.2rem
       color #cfcfcf
-.fade-enter-active, .fade-leave-active
-  opacity 1
-  transition: opacity .3s
-.fade-enter, .fade-leave-active
-  opacity 0
 </style>
