@@ -11,6 +11,8 @@ import address from '@/page/users/children/address'
 import collection from '@/page/users/children/collection'
 import comment from '@/page/users/children/comment'
 import purchase from '@/page/users/children/purchase'
+import login from '@/page/login/login'
+import register from '@/page/register/register'
 
 Vue.use(Router)
 
@@ -67,6 +69,16 @@ export default new Router({
         meta: { active: 3, isUsers: false, title: '收藏' },
         component: collection
       }]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
     },
     {
       path: '*',
