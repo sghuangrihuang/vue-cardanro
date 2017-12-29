@@ -2,7 +2,7 @@
   <div class="users">
     <vHeader :searchFlag="true" v-if="!$route.meta.isUsers">
       <div slot="childHeader" class="child-header-wrapper">
-        <vChildHeader :title="$route.meta.title"></vChildHeader>
+        <vChildHeader :title="$route.meta.title" ></vChildHeader>
       </div>
     </vHeader>
     <div class="user-message" v-if="$route.meta.isUsers">
