@@ -65,7 +65,7 @@ export default {
   right 0
   bottom 2.45rem
   left 0
-  z-index 50
+  z-index 49
   overflow auto
 .user-avater
   width 66.6667%
