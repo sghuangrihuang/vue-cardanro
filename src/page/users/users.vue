@@ -2,7 +2,8 @@
   <div class="users">
     <vHeader :searchFlag="true" v-if="!$route.meta.isUsers">
       <div slot="childHeader" class="child-header-wrapper">
-        <vChildHeader :title="$route.meta.title" ></vChildHeader>
+        <vChildHeader :title="$route.meta.title" @shareClick="shareClick" ></vChildHeader>
+        <share ref="share" shareHeader="分享标题"></share>
       </div>
     </vHeader>
     <div class="user-message" v-if="$route.meta.isUsers">
@@ -46,11 +47,18 @@
 import vHeader from '@/components/vHeader'
 import vFooter from '@/components/vFooter'
 import vChildHeader from '@/components/vChildHeader'
+import share from '@/components/share'
 export default {
   components: {
     vChildHeader,
     vHeader,
-    vFooter
+    vFooter,
+    share
+  },
+  methods: {
+    shareClick() {
+      this.$refs.share.changeFlag();
+    }
   }
 }
 </script>

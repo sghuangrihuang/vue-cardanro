@@ -3,12 +3,10 @@
     <i class="fa fa-angle-left" @click="$router.go(-1)"></i>
     <span>{{title}}</span>
     <i class="fa fa-share-alt" @click="shareFlag"></i>
-    <share ref="share"></share>
   </div>
 </template>
 
 <script>
-import share from './share'
 export default {
   props: {
     title: {
@@ -18,11 +16,8 @@ export default {
   },
   methods: {
     shareFlag() {
-      this.$refs.share.changeFlag();
+      this.$emit('shareClick')
     }
-  },
-  components: {
-    share
   }
 }
 </script>

@@ -6,9 +6,13 @@
     <transition name="share-move">
       <div class="share-wrapper" v-show="flag" @click.stop>
         <div class="share-box">
-          <header class="share-header bb-1px">{{ shareHeader }}</header>
-          <div class="share-buttons" v-if="buttons && buttons.length">
-            <button class="bb-1px btn" v-for="(btn, index) in buttons" :key="index" @click.stop.prevent="btn.handler"> {{ btn.title }} </button>
+          <div class="share-box-group">
+            <header class="share-header bb-1px">{{ shareHeader }}</header>
+            <div class="share-buttons" v-if="buttons && buttons.length">
+              <button class="bb-1px btn" v-for="(btn, index) in buttons" :key="index" @click.stop.prevent="btn.handler"> {{ btn.title }} </button>
+            </div>
+          </div>
+          <div class="share-box-group share-box-cancel">
             <button class="bb-1px btn cancel-btn" @click="changeFlag">取消</button>
           </div>
         </div>
@@ -26,18 +30,26 @@ export default {
         return [
           {
             title: 'QQ',
+            role: 'destructive',
             handler() {
               alert('QQ')
             }
           },{
-            title: '微信',
+            title: 'QQ空间',
+            role: 'destructive',
             handler() {
-              alert('微信')
+              alert('QQ空间')
             }
           },{
             title: '微博',
+            role: 'destructive',
             handler() {
               alert('微博')
+            }
+          },{
+            title: '微信',
+            handler() {
+              alert('微信');
             }
           }
         ]
@@ -72,32 +84,20 @@ export default {
   transform translateY(0)
 .share-move-enter, .share-move-leave-active
   transform translateY(100%)
-.share-buttons
-  .btn
-    min-height 2.0rem
-    display flex
-    width 100%
-    justify-content center
-    align-items center
-    position relative
-    bb-1px(#d6d6da)
-    background-color transparent
-    font-size .9rem
-    color #222
-    border none
-    &.cancel-btn
-      position absolute
-      bottom .5rem
-      left 0
-      border-none()
-      &:after
-        width 100%
-        position absolute
-        top -.5rem
-        left 0
-        height .5rem
-        background-color #999
-        content ' '
+.btn
+  min-height 2.0rem
+  display flex
+  width 100%
+  justify-content center
+  align-items center
+  position relative
+  bb-1px(#d6d6da)
+  background-color transparent
+  font-size .9rem
+  color #222
+  border none
+  &.cancel-btn
+    border-none()
 .share
   position fixed
   width 100%
@@ -118,19 +118,22 @@ export default {
     bottom 0 
     z-index 102
     .share-box
-      position absolute
-      top 0
-      overflow auto
-      bottom 0
-      box-sizing border-box
-      padding  1rem .5rem .5rem
-      height 100% 
-      left 50%
-      transform translateX(-50%)
-      width 90%
-      background-color #fafafa
-      border-top-left-radius  1rem
-      border-top-right-radius  1rem
+      padding 0 1rem
+      display flex
+      justify-content flex-end
+      flex-direction column
+      height 100%
+      max-height 100%
+      .share-box-group
+        flex-shrink: 2
+        overflow scroll
+        border-radius: 13px
+        margin-bottom: 8px
+        background: #f9f9f9
+        pointer-events: all
+        &.share-box-cancel
+          overflow hidden
+          flex-shrink: 0
       .share-header
         font-size 1rem
         text-align center
