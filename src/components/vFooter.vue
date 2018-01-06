@@ -1,6 +1,6 @@
 <template>
   <footer class="main-footer">
-    <slot name="sort"></slot>  
+    <slot name="cart"></slot>  
     <div class="tabs" v-if="flagFooter">
       <div class="tab">
         <router-link to="/home" :class="{actived: $route.meta.active==0}">
@@ -15,7 +15,7 @@
         </router-link>
       </div>
       <div class="tab">
-        <router-link to="/cart" :class="{actived: $route.meta.active==2}">
+        <router-link to="/shopcart" :class="{actived: $route.meta.active==2}">
           <i class="fa fa-shopping-cart"></i>
           <span>购物车</span>
         </router-link>
@@ -48,6 +48,7 @@ export default {
   bottom: 0
   left: 0
   right: 0
+  z-index 9
   height 2.45rem
   .tabs
     width: 100%

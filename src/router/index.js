@@ -13,6 +13,7 @@ import comment from '@/page/users/children/comment'
 import purchase from '@/page/users/children/purchase'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
+import shopcart from '@/page/shopcart/shopcart'
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: '/shopcart',
+      name: 'shopcart',
+      component: shopcart
     },
     {
       path: '*',
