@@ -22,20 +22,20 @@
         </div>
       </div>
       <div class="shopcart-list">
-        <div class="shopcart-item">
+        <div class="shopcart-item" v-for="(item, index) in shoplist" :key="index">
           <div class="shopcart-checkbox">
             <i class="checked-box fa" :class="{ 
-              'fa-circle-o': true,
-              'fa-check-circle': false,
-              checked: false}" ></i>
+              'fa-circle-o': !item.checked,
+              'fa-check-circle': item.checked,
+              checked: item.checked}" @click="selectItem(item)" ></i>
           </div>
           <div class="shopcart-avgtar">
-            <img src="https://dummyimage.com/88x31" alt="">
+            <img v-lazy="item.img" alt="">
           </div>
           <div class="shopcart-mess">
-            <h2 class="shopcart-mess-title">(官方正品，专营店直销)欧舒丹美肌无暇保湿霜50ML</h2>
-            <p class="shopcart-mess-count"><span>数量：1</span><span>折扣 无</span></p>
-            <p class="shopcart-mess-price">¥340</p>
+            <h2 class="shopcart-mess-title">{{item.title}}</h2>
+            <p class="shopcart-mess-count"><span>数量：{{item.count}}</span><span>折扣 无</span></p>
+            <p class="shopcart-mess-price">¥{{item.price}}</p>
           </div>
         </div>
       </div>
@@ -44,12 +44,12 @@
       <div class="child-footer" slot="cart">
         <div class="mess">
           <i class="checked-box fa" :class="{ 
-            'fa-circle-o': true,
-            'fa-check-circle': false,
-            checked: false}" ></i>
-          <span>全选</span>
+            'fa-circle-o': !allChecked,
+            'fa-check-circle': allChecked,
+            checked: allChecked}" @click="selectAllItem" ></i>
+          <span  @click="selectAllItem" >全选</span>
           <strong>合计：</strong>
-          <b>¥952</b>
+          <b>¥{{allSum}}</b>
         </div>
         <div class="btns">前往确认</div>
       </div>
@@ -58,11 +58,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import api from '@/assets/js/fetch'
 import vHeader from '@/components/vHeader'
 import vChildHeader from '@/components/vChildHeader'
 import share from '@/components/share'
 import vFooter from '@/components/vFooter'
 export default {
+  data () {
+    return {
+      shoplist: [],
+      allChecked: false,
+    }
+  },
   components: {
     vHeader,
     vChildHeader,
@@ -72,6 +80,39 @@ export default {
   methods: {
     shareClick() {
       this.$refs.share.changeFlag();
+    },
+    selectItem(item) {
+      item.checked = !item.checked;
+      this.allChecked = this.shoplist.filter((item) => {
+        return item.checked == true
+      }).length == this.shoplist.length;
+    },
+    selectAllItem() {
+      var vm = this;
+      this.allChecked = !this.allChecked;
+      this.shoplist.forEach((item) => {
+        item.checked = vm.allChecked;
+      })
+    }
+  },
+  created () {
+    api.shopList()
+    .then((res) => {
+      this.shoplist = res.list;
+      this.shoplist.forEach(function (item) {
+        Vue.set(item, 'checked', false);
+      })
+    })
+  },
+  computed: {
+    allSum() {
+      var sum = 0;
+      this.shoplist.forEach(function (item) {
+        if ( item.checked ) {
+          sum += item.count * item.price
+        }
+      })
+      return sum;
     }
   }
 }

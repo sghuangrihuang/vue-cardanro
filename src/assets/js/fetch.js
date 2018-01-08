@@ -31,5 +31,8 @@ export function fetch(url, params) {
 export default {
   searchList(params) {
     return fetch('/search', params);
+  },
+  shopList(params) {
+    return fetch('/shoplist', params);
   }
 }
