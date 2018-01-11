@@ -98,6 +98,8 @@ export default {
     .item
       display flex
       margin-bottom .5rem
+      &:last-child
+        margin-bottom 0
       .avatar
         width 3.75rem
         flex 0 0 3.75rem

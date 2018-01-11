@@ -37,7 +37,11 @@ export default new Router({
       path: '/sort',
       name: 'sort',
       component: sort,
-      meta: { active: 1 }
+      meta: { active: 1 },
+      children: [{
+        path: '/sort/:id',
+        component: sort
+      }]
     },
     {
       path: '/search',
