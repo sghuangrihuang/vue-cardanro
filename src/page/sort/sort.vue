@@ -19,10 +19,7 @@
                 <h1>{{item.name}}</h1>
                 <p>¥{{item.price}}</p>
                 <div class="star-box">
-                  <!-- <star :score="item.score"></star> -->
-                  <div class="star">
-                    <i class="fa" :class="star" v-for="(star, starid) in itemClasses(item.score)" :key="starid"></i>
-                  </div>
+                  <star :score="item.score"></star>
                   <span>({{item.users.length}}人使用心得)</span>
                 </div>
               </div>
@@ -39,6 +36,7 @@
 <script>
 import vHeader from '@/components/vHeader'
 import vFooter from '@/components/vFooter'
+import star from '@/components/star'
 import api from '@/assets/js/fetch'
 
 export default {
@@ -56,26 +54,11 @@ export default {
     })
   },
   methods: {
-    itemClasses(getScore) {
-      let result = [];
-      let score = Math.floor(getScore * 2) / 2;
-      let hasDecimal = score % 1 !=0;
-      let integer = Math.floor(score);
-      for ( let i=0; i<integer; i++ ) {
-        result.push(this.starClass[0]);
-      }
-      if ( hasDecimal ) {
-        result.push(this.starClass[1]);
-      }
-      while ( result.length < 5 ) {
-        result.push(this.starClass[2]);
-      }
-      return result;
-    }
   },
   components: {
     vHeader,
-    vFooter
+    vFooter,
+    star
   }
 }
 </script>
