@@ -34,5 +34,8 @@ export default {
   },
   shopList(params) {
     return fetch('/shoplist', params);
+  },
+  homeList(params) {
+    return fetch('/homelist', params);
   }
 }
