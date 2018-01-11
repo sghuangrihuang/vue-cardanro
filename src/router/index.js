@@ -14,6 +14,7 @@ import purchase from '@/page/users/children/purchase'
 import login from '@/page/login/login'
 import register from '@/page/register/register'
 import shopcart from '@/page/shopcart/shopcart'
+import detail from '@/page/sort/children/detail'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
         path: '/sort/:id',
         component: sort
       }]
+    },
+    {
+      path: '/sort/:id/detail/:detailId',
+      name: 'detail',
+      component: detail
     },
     {
       path: '/search',

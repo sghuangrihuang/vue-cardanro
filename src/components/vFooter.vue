@@ -27,6 +27,7 @@
         </router-link>
       </div> 
     </div>
+    <slot name="detail"></slot>
   </footer>
 </template>
 
