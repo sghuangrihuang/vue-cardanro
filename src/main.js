@@ -12,7 +12,7 @@ import store from 'storejs'
 import './mock'
 
 Vue.use(VueLazyLoad, {
-  // loading: '/static/loading-svg/loading-bars.svg'
+  loading: './src/assets/images/loading.gif'
 })
 Vue.use(VueAxios, axios)
 

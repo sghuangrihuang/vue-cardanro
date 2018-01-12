@@ -115,6 +115,7 @@
         <div class="detail-btn" style="background:#e82020" @click="toShopcart">立即购买</div>
       </div>
     </vFooter>
+    <loading :title="loadingText" :flag="!detail.id"></loading>
   </div>
 </template>
 
@@ -125,6 +126,7 @@ import vChildHeader from '@/components/vChildHeader'
 import share from '@/components/share'
 import api from '@/assets/js/fetch'
 import star from '@/components/star'
+import loading from '@/components/loading'
 
 export default {
   data () {
@@ -134,7 +136,8 @@ export default {
       hotlist: [],
       detail: '',
       count: 1,
-      select: 0
+      select: 0,
+      loadingText: '正在加载中....'
     }
   },
   computed: {
@@ -147,7 +150,8 @@ export default {
     vFooter,
     vChildHeader,
     share,
-    star
+    star,
+    loading
   },
   methods: {
     addCount()  {
@@ -177,10 +181,11 @@ export default {
           item.childrens.forEach((i) => {
             if ( i.id == detailId ) {
               vm.detail = i;
-              console.log(vm.detail);
+              return
             }
           })
         }
+        return vm.loadingText = '加载失败，请重新刷新页面'
       })
     })
     api.shopList()
