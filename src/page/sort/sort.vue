@@ -48,9 +48,11 @@ export default {
     }
   },
   created () {
+    var id = this.$route.params.id;
     api.homeList()
     .then((res) => {
       this.homelist = res.list;
+      this.selectIndex = id === undefined ?  1 : id- 1
     })
   },
   methods: {

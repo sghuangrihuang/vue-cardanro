@@ -32,16 +32,17 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home,
-      meta: { active: 0 }
+      meta: { active: 0, keepAlive: true }
     },
     {
       path: '/sort',
       name: 'sort',
       component: sort,
-      meta: { active: 1 },
+      meta: { active: 1, keepAlive: true },
       children: [{
         path: '/sort/:id',
-        component: sort
+        component: sort,
+        meta: { active: 1, keepAlive: true }
       }]
     },
     {
