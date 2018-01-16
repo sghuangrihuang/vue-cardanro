@@ -25,7 +25,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="nav-child" v-for="(item, index) in homelist" :key="index"></div> -->
         </div>
       </div>
     </div>

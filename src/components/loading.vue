@@ -11,7 +11,7 @@
   export default {
     props: {
       flag: {
-        type: Boolean || String || Number,
+        type: Boolean | String | Number,
         default: true
       },
       title: {

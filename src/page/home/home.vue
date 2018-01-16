@@ -61,6 +61,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus">
 @import '../../assets/stylus/@mixin.styl'
+
 .banner
   position relative
   width 100%

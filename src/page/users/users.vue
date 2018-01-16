@@ -1,11 +1,13 @@
 <template>
   <div class="users">
-    <vHeader :searchFlag="true" v-if="!$route.meta.isUsers">
-      <div slot="childHeader" class="child-header-wrapper">
-        <vChildHeader :title="$route.meta.title" @shareClick="shareClick" ></vChildHeader>
-        <share ref="share" shareHeader="分享标题"></share>
-      </div>
-    </vHeader>
+    <transition name="user-move">
+      <vHeader :searchFlag="true" v-if="!$route.meta.isUsers">
+        <div slot="childHeader" class="child-header-wrapper">
+          <vChildHeader :title="$route.meta.title" @shareClick="shareClick" ></vChildHeader>
+          <share ref="share" shareHeader="分享标题"></share>
+        </div>
+      </vHeader>
+    </transition>
     <div class="user-message" v-if="$route.meta.isUsers">
       <div class="user-avater">
         <img v-lazy="'https://dummyimage.com/88x31'" alt="">
@@ -38,7 +40,9 @@
         </router-link>
       </div>
     </div>
-    <router-view class="users-wrapper"></router-view>
+    <transition name="user-move">
+      <router-view class="users-wrapper"></router-view>
+    </transition>
     <vFooter></vFooter>
   </div>
 </template>
@@ -48,6 +52,7 @@ import vHeader from '@/components/vHeader'
 import vFooter from '@/components/vFooter'
 import vChildHeader from '@/components/vChildHeader'
 import share from '@/components/share'
+
 export default {
   components: {
     vChildHeader,
@@ -65,6 +70,17 @@ export default {
 
 <style lang="stylus">
 @import '../../assets/stylus/@mixin.styl'
+
+.user-move-enter
+  transform translate(100%, 0)
+.user-move-leave
+  transform translate(0, 0)
+.user-move-enter-active
+  transition all .2s linear
+.user-move-leave-active
+  transform translate(100%, 0)
+  transition all .2s linear
+
 .user-message
   margin-bottom 2.45rem
 .users-wrapper
@@ -73,6 +89,7 @@ export default {
   right 0
   bottom 2.45rem
   left 0
+  background-color #fff
   z-index 49
   overflow auto
 .user-avater

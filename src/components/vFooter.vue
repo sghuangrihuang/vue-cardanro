@@ -44,6 +44,7 @@ export default {
 
 <style lang="stylus">
 @import '../assets/stylus/variable.styl'
+
 .main-footer
   position: fixed
   bottom: 0

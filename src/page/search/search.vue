@@ -113,6 +113,7 @@ export default {
 
 <style lang="stylus">
 @import '../../assets/stylus/@mixin.styl'
+
 .search-main
   margin-bottom 2.45rem
   .search-header

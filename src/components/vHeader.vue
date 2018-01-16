@@ -38,6 +38,7 @@ export default {
 
 <style lang="stylus">
 @import '../assets/stylus/@mixin.styl'
+
 .main-header
   position fixed
   top 0

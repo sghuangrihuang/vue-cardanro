@@ -64,6 +64,7 @@ import vHeader from '@/components/vHeader'
 import vChildHeader from '@/components/vChildHeader'
 import share from '@/components/share'
 import vFooter from '@/components/vFooter'
+
 export default {
   data () {
     return {
