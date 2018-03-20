@@ -24,9 +24,9 @@ axios.interceptors.response.use(response => {
  * @returns {Promise}
  */
 
-export function post(url, params = {}) {
+export function post(url, params = {}, config = {}) {
   return new Promise((resolve, reject) => {
-    axios.post(url, params)
+    axios.post(url, params, config)
       .then(response => {
         resolve(response.data);
       })
@@ -103,5 +103,11 @@ export default {
   },
   homeList(params) {
     return post('/homelist', params);
-  }
+  },
+  post(url, params, config) {
+    return post(url, params, config);
+  },
+  get(url, params) {
+    return get(url, params);
+  },
 }
